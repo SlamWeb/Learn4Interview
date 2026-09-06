@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn4Interview"
+  short_description: "Learn any technical topic from zero to interview-ready"
+  default_prompt: "Use $learn4interview to teach me a technical topic from zero to interview-ready depth."
