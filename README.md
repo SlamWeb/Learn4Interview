@@ -16,7 +16,7 @@ Turn any technical topic into a friendly, visual classroom that starts from zero
 </div>
 
 <p align="center">
-  <img src="assets/hero.png" alt="A learning journey from a simple story through technical systems to interview confidence" width="100%">
+  <img src="assets/hero.png" alt="A five-year-old child reading a storybook on the left and the same person entering an interview with a resume on the right" width="100%">
 </p>
 
 ## 🌱 What is it?
