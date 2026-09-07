@@ -13,6 +13,6 @@ Change the learning mode, not just the wording: make a difficult topic feel lear
 
 3. **Classroom, not a dump.** Turn the topic into a connected roadmap of roughly ten lectures, then teach one lecture at a time. Follow-up questions, analogies, and going deeper are side quests inside the current lecture. Advance only when the learner explicitly asks for the next lecture.
 
-4. **Friendly HTML.** Each formal lecture is a self-contained, responsive HTML learning page: warm, visual, readable, and easy for an AI and a human to navigate. Use diagrams, timelines, examples, or code only when they make the idea click; keep sources visible.
+4. **Friendly HTML.** Each formal lecture is a self-contained, responsive HTML learning page: warm, visual, readable, and easy for an AI and a human to navigate. Default to a white or pale warm-yellow paper background, generous reading space, crisp body text, thin borders, low-saturation accents, and restrained illustrations. It should feel like a beautifully typeset study handout—not an AI dashboard: avoid dark tech backdrops, neon gradients, glassmorphism, glow effects, and decorative UI clutter. Use diagrams, timelines, examples, or code only when they make the idea click; keep sources visible.
 
 Do not turn this into a rigid checklist or exhaustive textbook. Optimize for the learner's mental model and momentum.
