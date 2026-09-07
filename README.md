@@ -38,6 +38,22 @@ The teaching starts with a story a five-year-old could follow, then quietly buil
   A difficult topic becomes a sequence of small “oh, I get it” moments—then a clear answer under interview pressure.
 </p>
 
+## 🧪 Example · MCP
+
+This is a real first lesson generated with Learn4Interview—not a mock screenshot. It starts with a five-year-old-friendly story, reveals the MCP vocabulary only after the idea is clear, then connects it to an architecture diagram and public interview evidence.
+
+<p align="center">
+  <a href="examples/mcp/lecture-01.html">
+    <img src="examples/mcp/lecture-01.png" alt="Preview of the MCP Lecture 01 HTML lesson" width="86%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="examples/mcp/lecture-01.html"><strong>Open the full MCP lesson →</strong></a>
+</p>
+
+<p align="center"><sub>Official MCP documentation · Amazon SDE interview report · JPMorgan AI Engineer interview report</sub></p>
+
 ## 📦 Install
 
 Give this repository URL to an agent that supports skills:

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCP · Lecture 01 · Why the bridge exists</title>
+  <style>
+    :root {
+      --ink: #17211d;
+      --muted: #66736c;
+      --paper: #f5f1e8;
+      --card: #fffdf8;
+      --line: #d9d3c7;
+      --mint: #c9ddd2;
+      --mint-strong: #5c8c75;
+      --yellow: #f2d47b;
+      --coral: #ee9b82;
+      --blue: #b8d7e6;
+      --violet: #c9c0e3;
+      --shadow: 0 18px 45px rgba(48, 55, 50, .08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 26px 28px 64px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .brand { font-weight: 850; letter-spacing: -.03em; text-decoration: none; }
+    .brand-mark { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: var(--coral); }
+    .top-meta, .eyebrow, .chip, .source-kind { font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .top-meta { color: var(--muted); }
+    .hero { padding: 58px 0 42px; max-width: 870px; }
+    .eyebrow { color: var(--mint-strong); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 820px; margin-bottom: 18px; font-size: clamp(2.45rem, 6vw, 5.4rem); line-height: .98; letter-spacing: -.065em; }
+    .lede { max-width: 760px; margin-bottom: 24px; color: #4c5952; font-size: clamp(1.03rem, 2vw, 1.28rem); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; }
+    .chip { display: inline-flex; align-items: center; min-height: 30px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.52); color: #516058; }
+    .chip.active { border-color: transparent; background: var(--ink); color: var(--paper); }
+    .course { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 40px; align-items: start; }
+    .roadmap { position: sticky; top: 20px; padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,253,248,.72); }
+    .roadmap h2 { margin-bottom: 14px; font-size: 1rem; letter-spacing: -.02em; }
+    .roadmap ol { margin: 0; padding: 0; list-style: none; counter-reset: lesson; }
+    .roadmap li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: start; padding: 9px 0; color: var(--muted); font-size: .86rem; }
+    .roadmap li::before { counter-increment: lesson; content: counter(lesson, decimal-leading-zero); color: #97a39b; font-variant-numeric: tabular-nums; }
+    .roadmap li.current { color: var(--ink); font-weight: 800; }
+    .roadmap li.current::before { color: var(--coral); }
+    .lesson { min-width: 0; }
+    .section { margin-bottom: 26px; }
+    .section-label { margin-bottom: 8px; color: var(--mint-strong); font-size: .78rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+    .section h2 { margin-bottom: 10px; font-size: clamp(1.55rem, 3vw, 2.25rem); line-height: 1.05; letter-spacing: -.045em; }
+    .section-intro { max-width: 740px; color: #526059; }
+    .story { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; }
+    .story-card, .panel, .evidence-card, .answer, .source-box { border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: var(--shadow); }
+    .story-card { padding: 26px; }
+    .story-card h3 { margin-bottom: 10px; font-size: 1.2rem; }
+    .story-card p:last-child { margin-bottom: 0; }
+    .accent-card { background: var(--mint); border-color: transparent; box-shadow: none; }
+    .accent-card strong { display: block; margin-bottom: 10px; font-size: 1.08rem; }
+    .diagram { margin: 18px 0 28px; overflow: hidden; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: #fbf9f3; }
+    .diagram svg { display: block; width: 100%; height: auto; }
+    .diagram text { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; fill: var(--ink); }
+    .diagram .small { fill: var(--muted); font-size: 13px; }
+    .diagram .label { font-size: 15px; font-weight: 800; }
+    .diagram .node { stroke: var(--ink); stroke-width: 2.2; }
+    .divider { height: 1px; margin: 26px 0; background: var(--line); }
+    .term-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .term { padding: 18px; border-radius: 16px; background: #f0eadc; }
+    .term:nth-child(2) { background: #e6f0eb; }
+    .term:nth-child(3) { background: #eee9f7; }
+    .term b { display: block; margin-bottom: 4px; font-size: 1.04rem; }
+    .term p { margin: 0; color: #59675f; font-size: .91rem; }
+    .evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .evidence-card { padding: 20px; box-shadow: none; }
+    .evidence-card.observed { border-top: 4px solid var(--coral); }
+    .evidence-card.derived { border-top: 4px solid var(--violet); }
+    .source-kind { margin-bottom: 10px; color: var(--muted); }
+    .evidence-card h3 { margin-bottom: 8px; font-size: 1.02rem; line-height: 1.25; }
+    .evidence-card p { color: #59675f; font-size: .9rem; }
+    .evidence-card p:last-child { margin-bottom: 0; }
+    .evidence-card a { text-underline-offset: 3px; }
+    .answer { margin-top: 14px; padding: 26px; background: var(--ink); color: var(--paper); border-color: transparent; }
+    .answer .section-label { color: var(--yellow); }
+    .answer blockquote { margin: 0; font-size: clamp(1.18rem, 2.3vw, 1.55rem); line-height: 1.4; letter-spacing: -.02em; }
+    .footer-note { display: flex; justify-content: space-between; gap: 14px; align-items: center; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .86rem; }
+    .source-box { margin-top: 26px; padding: 18px 20px; box-shadow: none; }
+    .source-box h2 { margin-bottom: 8px; font-size: 1rem; }
+    .source-box ul { margin: 0; padding-left: 18px; color: #59675f; font-size: .86rem; }
+    .source-box li + li { margin-top: 5px; }
+    @media (max-width: 820px) {
+      .shell { padding: 20px 17px 46px; }
+      .course { grid-template-columns: 1fr; gap: 24px; }
+      .roadmap { position: static; }
+      .roadmap ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 12px; }
+      .story, .evidence-grid { grid-template-columns: 1fr; }
+      .term-grid { grid-template-columns: 1fr; }
+      .footer-note { align-items: flex-start; flex-direction: column; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { max-width: none; padding: 0; }
+      .roadmap { position: static; box-shadow: none; }
+      .story-card, .panel, .evidence-card, .answer, .source-box { box-shadow: none; break-inside: avoid; }
+      .course { grid-template-columns: 190px 1fr; gap: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="../../SKILL.md"><span class="brand-mark">✦</span>Learn4Interview</a>
+      <span class="top-meta">Example class · MCP</span>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow">Lecture 01 / 10 · Start from zero</div>
+      <h1 id="page-title">MCP starts with a missing bridge.</h1>
+      <p class="lede">Before we learn the letters, we will meet the problem: a smart AI that can think, but has no shared way to reach the tools and data around it.</p>
+      <div class="hero-meta"><span class="chip active">Why it exists</span><span class="chip">Story first</span><span class="chip">Interview lens</span></div>
+    </section>
+
+    <div class="course">
+      <aside class="roadmap" aria-label="MCP course roadmap">
+        <h2>Our classroom map</h2>
+        <ol>
+          <li class="current">Why MCP exists</li>
+          <li>Host · Client · Server</li>
+          <li>One tool call, end to end</li>
+          <li>Tools, resources, prompts</li>
+          <li>JSON-RPC and transport</li>
+          <li>Trust, consent, permissions</li>
+          <li>Build a tiny server</li>
+          <li>Debug with Inspector</li>
+          <li>Scale and fail safely</li>
+          <li>Interview synthesis</li>
+        </ol>
+      </aside>
+
+      <main class="lesson">
+        <section class="section" aria-labelledby="story-title">
+          <div class="section-label">Start with a picture</div>
+          <h2 id="story-title">Imagine a brilliant kid in a room full of locked doors.</h2>
+          <p class="section-intro">The kid is the AI. The doors lead to GitHub, a database, a browser, or your company’s APIs. The kid can reason about what to do—but every door used to have a different handle, different rules, and a different instruction manual.</p>
+          <div class="story">
+            <article class="story-card">
+              <h3>Before the bridge</h3>
+              <p>Every app built its own custom connector for every tool. Add a new AI host, and the same integration work started again.</p>
+              <p><strong>Lots of clever adapters. Almost no shared language.</strong></p>
+            </article>
+            <article class="story-card accent-card">
+              <strong>The design question</strong>
+              <p>Can tools describe what they can do once, in a way many AI applications can understand?</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="diagram-title">
+          <div class="section-label">The idea, before the acronym</div>
+          <h2 id="diagram-title">One shared doorway beats a pile of one-off keys.</h2>
+          <div class="diagram">
+            <svg viewBox="0 0 820 320" role="img" aria-label="Comparison of many custom integrations versus one MCP bridge">
+              <defs>
+                <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#66736c"/></marker>
+              </defs>
+              <text x="24" y="27" class="label">Before · every app learns every tool</text>
+              <rect x="26" y="48" width="125" height="50" rx="12" fill="#c9c0e3" class="node"/><text x="88" y="78" text-anchor="middle" class="label">AI app</text>
+              <rect x="270" y="41" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="64" text-anchor="middle" class="small">custom key</text>
+              <rect x="270" y="88" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="111" text-anchor="middle" class="small">custom key</text>
+              <rect x="270" y="135" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="158" text-anchor="middle" class="small">custom key</text>
+              <rect x="576" y="38" width="136" height="42" rx="10" fill="#b8d7e6" class="node"/><text x="644" y="64" text-anchor="middle" class="small">GitHub</text>
+              <rect x="576" y="93" width="136" height="42" rx="10" fill="#f2d47b" class="node"/><text x="644" y="119" text-anchor="middle" class="small">Database</text>
+              <rect x="576" y="148" width="136" height="42" rx="10" fill="#ee9b82" class="node"/><text x="644" y="174" text-anchor="middle" class="small">Browser</text>
+              <path d="M151 73 C190 73 225 59 270 59 M151 73 C195 82 220 106 270 106 M151 73 C190 105 220 151 270 153" fill="none" stroke="#66736c" stroke-width="2" marker-end="url(#arrow)"/>
+              <path d="M396 59 C470 59 500 59 576 59 M396 106 C470 106 500 114 576 114 M396 153 C470 153 500 169 576 169" fill="none" stroke="#66736c" stroke-width="2" marker-end="url(#arrow)"/>
+              <line x1="24" y1="215" x2="796" y2="215" stroke="#d9d3c7"/>
+              <text x="24" y="248" class="label">With MCP · one shared bridge</text>
+              <rect x="26" y="267" width="125" height="42" rx="10" fill="#c9c0e3" class="node"/><text x="88" y="293" text-anchor="middle" class="small">AI app</text>
+              <rect x="250" y="267" width="168" height="42" rx="10" fill="#c9ddd2" class="node"/><text x="334" y="293" text-anchor="middle" class="small">MCP bridge</text>
+              <rect x="566" y="267" width="190" height="42" rx="10" fill="#f2d47b" class="node"/><text x="661" y="293" text-anchor="middle" class="small">tools + data</text>
+              <path d="M151 288 L250 288 M418 288 L566 288" fill="none" stroke="#5c8c75" stroke-width="3" marker-end="url(#arrow)"/>
+            </svg>
+          </div>
+          <div class="term-grid" aria-label="First vocabulary reveal">
+            <article class="term"><b>Host</b><p>The AI application the person is using.</p></article>
+            <article class="term"><b>Client</b><p>The connector inside that host.</p></article>
+            <article class="term"><b>Server</b><p>The program that offers tools or context.</p></article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="interview-title">
+          <div class="section-label">Interview lens</div>
+          <h2 id="interview-title">The question is already showing up.</h2>
+          <p class="section-intro">These are not invented “top questions”. The first two are observed in public first-hand interview reports; the last is a useful inference from the architecture.</p>
+          <div class="evidence-grid">
+            <article class="evidence-card observed">
+              <div class="source-kind">Observed · Amazon SDE Intern · 2026</div>
+              <h3>“What are MCP servers?”</h3>
+              <p>The report says the interviewer expected conceptual understanding plus practical applications.</p>
+              <p><a href="https://leetcode.com/discuss/post/8379852/amazon-sde-internship-interview-experien-xu0m/">Read the first-hand report →</a></p>
+            </article>
+            <article class="evidence-card observed">
+              <div class="source-kind">Observed · JPMorgan AI Engineer · 2026</div>
+              <h3>Did you personally implement an MCP server?</h3>
+              <p>The discussion focused on ownership, service boundaries, and the architecture behind an agentic project.</p>
+              <p><a href="https://www.reddit.com/r/OfferEngineering/comments/1vgc8zk/jpmorgan_ai_engineer_phone_screen_interview/">Read the first-hand report →</a></p>
+            </article>
+            <article class="evidence-card derived">
+              <div class="source-kind">Likely · derived from the above</div>
+              <h3>Why use a protocol instead of one-off integrations?</h3>
+              <p>Inference: a strong answer should connect reuse, discoverability, permissions, and the cost of maintaining adapters.</p>
+              <p><strong>Not a reported question.</strong></p>
+            </article>
+          </div>
+        </section>
+
+        <section class="answer" aria-labelledby="answer-title">
+          <div class="section-label">Say it out loud</div>
+          <h2 id="answer-title">A 30-second interview answer</h2>
+          <blockquote>MCP is an open protocol that gives AI applications a standard way to discover and use external tools and data. Instead of every host writing a separate integration for every service, an MCP client connects the host to an MCP server that exposes capabilities in a shared shape. That makes integrations reusable—but the server and its permissions still need to be trusted and reviewed.</blockquote>
+        </section>
+
+        <div class="footer-note"><span>Side quests stay in Lecture 01.</span><span>Say “next lecture” to meet Host, Client, and Server in detail.</span></div>
+
+        <section class="source-box" aria-labelledby="sources-title">
+          <h2 id="sources-title">Sources used in this lesson</h2>
+          <ul>
+            <li><a href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro">MCP official introduction</a> — protocol purpose and terminology.</li>
+            <li><a href="https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/server/tools.mdx">MCP official Tools specification</a> — tool discovery, calling, and human-in-the-loop guidance.</li>
+            <li><a href="https://leetcode.com/discuss/post/8379852/amazon-sde-internship-interview-experien-xu0m/">Amazon SDE Internship interview experience (2026)</a> — observed MCP question.</li>
+            <li><a href="https://www.reddit.com/r/OfferEngineering/comments/1vgc8zk/jpmorgan_ai_engineer_phone_screen_interview/">JPMorgan AI Engineer phone screen experience (2026)</a> — observed implementation deep dive.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
