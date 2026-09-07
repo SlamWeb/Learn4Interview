@@ -38,21 +38,21 @@ The teaching starts with a story a five-year-old could follow, then quietly buil
   A difficult topic becomes a sequence of small “oh, I get it” moments—then a clear answer under interview pressure.
 </p>
 
-## 🧪 Example · MCP
+## 🧪 示例 · MCP
 
-This is a real first lesson generated with Learn4Interview—not a mock screenshot. It starts with a five-year-old-friendly story, reveals the MCP vocabulary only after the idea is clear, then connects it to an architecture diagram and public interview evidence.
+这是 Learn4Interview 实际生成的第一讲，不是模拟截图。它先用五岁小孩也能理解的故事，再揭示 MCP 术语，最后连接到架构图和公开面经证据。
 
 <p align="center">
   <a href="examples/mcp/lecture-01.html">
-    <img src="examples/mcp/lecture-01.png" alt="Preview of the MCP Lecture 01 HTML lesson" width="86%">
+    <img src="examples/mcp/lecture-01.png" alt="MCP 第一讲中文 HTML 课堂预览" width="86%">
   </a>
 </p>
 
 <p align="center">
-  <a href="examples/mcp/lecture-01.html"><strong>Open the full MCP lesson →</strong></a>
+  <a href="examples/mcp/lecture-01.html"><strong>打开完整的 MCP 中文课堂 →</strong></a>
 </p>
 
-<p align="center"><sub>Official MCP documentation · Amazon SDE interview report · JPMorgan AI Engineer interview report</sub></p>
+<p align="center"><sub>MCP 官方文档 · Amazon SDE 面经 · JPMorgan AI Engineer 面经</sub></p>
 
 ## 📦 Install
 

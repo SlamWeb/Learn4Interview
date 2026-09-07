@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MCP · Lecture 01 · Why the bridge exists</title>
+  <title>MCP · 第 01 讲 · 为什么需要这座桥</title>
   <style>
     :root {
       --ink: #17211d;
@@ -114,125 +114,125 @@
   <div class="shell">
     <header class="topbar">
       <a class="brand" href="../../SKILL.md"><span class="brand-mark">✦</span>Learn4Interview</a>
-      <span class="top-meta">Example class · MCP</span>
+      <span class="top-meta">示例课堂 · MCP</span>
     </header>
 
     <section class="hero" aria-labelledby="page-title">
-      <div class="eyebrow">Lecture 01 / 10 · Start from zero</div>
-      <h1 id="page-title">MCP starts with a missing bridge.</h1>
-      <p class="lede">Before we learn the letters, we will meet the problem: a smart AI that can think, but has no shared way to reach the tools and data around it.</p>
-      <div class="hero-meta"><span class="chip active">Why it exists</span><span class="chip">Story first</span><span class="chip">Interview lens</span></div>
+      <div class="eyebrow">第 01 讲 / 共 10 讲 · 从零开始</div>
+      <h1 id="page-title">MCP，先从一座不存在的桥说起。</h1>
+      <p class="lede">在记住这三个字母之前，我们先认识它要解决的问题：一个会思考的 AI，却没有一套共同方式去触碰周围的工具和数据。</p>
+      <div class="hero-meta"><span class="chip active">为什么需要它</span><span class="chip">先讲故事</span><span class="chip">面试视角</span></div>
     </section>
 
     <div class="course">
-      <aside class="roadmap" aria-label="MCP course roadmap">
-        <h2>Our classroom map</h2>
+      <aside class="roadmap" aria-label="MCP 课程地图">
+        <h2>我们的课堂地图</h2>
         <ol>
-          <li class="current">Why MCP exists</li>
+          <li class="current">为什么会有 MCP</li>
           <li>Host · Client · Server</li>
-          <li>One tool call, end to end</li>
-          <li>Tools, resources, prompts</li>
-          <li>JSON-RPC and transport</li>
-          <li>Trust, consent, permissions</li>
-          <li>Build a tiny server</li>
-          <li>Debug with Inspector</li>
-          <li>Scale and fail safely</li>
-          <li>Interview synthesis</li>
+          <li>一次工具调用的完整旅程</li>
+          <li>Tools、Resources、Prompts</li>
+          <li>JSON-RPC 与传输</li>
+          <li>信任、授权与权限</li>
+          <li>动手写一个小型 Server</li>
+          <li>用 Inspector 调试</li>
+          <li>如何扩展并安全失败</li>
+          <li>面试总结</li>
         </ol>
       </aside>
 
       <main class="lesson">
         <section class="section" aria-labelledby="story-title">
-          <div class="section-label">Start with a picture</div>
-          <h2 id="story-title">Imagine a brilliant kid in a room full of locked doors.</h2>
-          <p class="section-intro">The kid is the AI. The doors lead to GitHub, a database, a browser, or your company’s APIs. The kid can reason about what to do—but every door used to have a different handle, different rules, and a different instruction manual.</p>
+          <div class="section-label">先看一个画面</div>
+          <h2 id="story-title">想象一个聪明的孩子，站在一屋子锁着的门前。</h2>
+          <p class="section-intro">这个孩子就是 AI。门后是 GitHub、数据库、浏览器，或者公司的 API。孩子知道该做什么，却没有统一的开门方式——过去每扇门都有不同的把手、规则和说明书。</p>
           <div class="story">
             <article class="story-card">
-              <h3>Before the bridge</h3>
-              <p>Every app built its own custom connector for every tool. Add a new AI host, and the same integration work started again.</p>
-              <p><strong>Lots of clever adapters. Almost no shared language.</strong></p>
+              <h3>在这座桥出现之前</h3>
+              <p>每个应用都要为每个工具单独编写连接器。换一个 AI 宿主，同样的集成工作就要重新做一遍。</p>
+              <p><strong>聪明的适配器很多，共同语言几乎没有。</strong></p>
             </article>
             <article class="story-card accent-card">
-              <strong>The design question</strong>
-              <p>Can tools describe what they can do once, in a way many AI applications can understand?</p>
+              <strong>真正的问题</strong>
+              <p>能不能让工具只描述一次自己的能力，却让许多 AI 应用都能理解？</p>
             </article>
           </div>
         </section>
 
         <section class="section" aria-labelledby="diagram-title">
-          <div class="section-label">The idea, before the acronym</div>
-          <h2 id="diagram-title">One shared doorway beats a pile of one-off keys.</h2>
+          <div class="section-label">先理解想法，再记缩写</div>
+          <h2 id="diagram-title">一扇共享的门，比一串只用一次的钥匙更好。</h2>
           <div class="diagram">
-            <svg viewBox="0 0 820 320" role="img" aria-label="Comparison of many custom integrations versus one MCP bridge">
+            <svg viewBox="0 0 820 320" role="img" aria-label="多套自定义集成与一座 MCP 桥梁的对比">
               <defs>
                 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#66736c"/></marker>
               </defs>
-              <text x="24" y="27" class="label">Before · every app learns every tool</text>
-              <rect x="26" y="48" width="125" height="50" rx="12" fill="#c9c0e3" class="node"/><text x="88" y="78" text-anchor="middle" class="label">AI app</text>
-              <rect x="270" y="41" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="64" text-anchor="middle" class="small">custom key</text>
-              <rect x="270" y="88" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="111" text-anchor="middle" class="small">custom key</text>
-              <rect x="270" y="135" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="158" text-anchor="middle" class="small">custom key</text>
+              <text x="24" y="27" class="label">之前 · 每个应用都要学会每个工具</text>
+              <rect x="26" y="48" width="125" height="50" rx="12" fill="#c9c0e3" class="node"/><text x="88" y="78" text-anchor="middle" class="label">AI 应用</text>
+              <rect x="270" y="41" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="64" text-anchor="middle" class="small">自定义连接</text>
+              <rect x="270" y="88" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="111" text-anchor="middle" class="small">自定义连接</text>
+              <rect x="270" y="135" width="126" height="36" rx="10" fill="#fffdf8" class="node"/><text x="333" y="158" text-anchor="middle" class="small">自定义连接</text>
               <rect x="576" y="38" width="136" height="42" rx="10" fill="#b8d7e6" class="node"/><text x="644" y="64" text-anchor="middle" class="small">GitHub</text>
-              <rect x="576" y="93" width="136" height="42" rx="10" fill="#f2d47b" class="node"/><text x="644" y="119" text-anchor="middle" class="small">Database</text>
-              <rect x="576" y="148" width="136" height="42" rx="10" fill="#ee9b82" class="node"/><text x="644" y="174" text-anchor="middle" class="small">Browser</text>
+              <rect x="576" y="93" width="136" height="42" rx="10" fill="#f2d47b" class="node"/><text x="644" y="119" text-anchor="middle" class="small">数据库</text>
+              <rect x="576" y="148" width="136" height="42" rx="10" fill="#ee9b82" class="node"/><text x="644" y="174" text-anchor="middle" class="small">浏览器</text>
               <path d="M151 73 C190 73 225 59 270 59 M151 73 C195 82 220 106 270 106 M151 73 C190 105 220 151 270 153" fill="none" stroke="#66736c" stroke-width="2" marker-end="url(#arrow)"/>
               <path d="M396 59 C470 59 500 59 576 59 M396 106 C470 106 500 114 576 114 M396 153 C470 153 500 169 576 169" fill="none" stroke="#66736c" stroke-width="2" marker-end="url(#arrow)"/>
               <line x1="24" y1="215" x2="796" y2="215" stroke="#d9d3c7"/>
-              <text x="24" y="248" class="label">With MCP · one shared bridge</text>
-              <rect x="26" y="267" width="125" height="42" rx="10" fill="#c9c0e3" class="node"/><text x="88" y="293" text-anchor="middle" class="small">AI app</text>
-              <rect x="250" y="267" width="168" height="42" rx="10" fill="#c9ddd2" class="node"/><text x="334" y="293" text-anchor="middle" class="small">MCP bridge</text>
-              <rect x="566" y="267" width="190" height="42" rx="10" fill="#f2d47b" class="node"/><text x="661" y="293" text-anchor="middle" class="small">tools + data</text>
+              <text x="24" y="248" class="label">使用 MCP · 一座共享的桥</text>
+              <rect x="26" y="267" width="125" height="42" rx="10" fill="#c9c0e3" class="node"/><text x="88" y="293" text-anchor="middle" class="small">AI 应用</text>
+              <rect x="250" y="267" width="168" height="42" rx="10" fill="#c9ddd2" class="node"/><text x="334" y="293" text-anchor="middle" class="small">MCP 桥梁</text>
+              <rect x="566" y="267" width="190" height="42" rx="10" fill="#f2d47b" class="node"/><text x="661" y="293" text-anchor="middle" class="small">工具 + 数据</text>
               <path d="M151 288 L250 288 M418 288 L566 288" fill="none" stroke="#5c8c75" stroke-width="3" marker-end="url(#arrow)"/>
             </svg>
           </div>
-          <div class="term-grid" aria-label="First vocabulary reveal">
-            <article class="term"><b>Host</b><p>The AI application the person is using.</p></article>
-            <article class="term"><b>Client</b><p>The connector inside that host.</p></article>
-            <article class="term"><b>Server</b><p>The program that offers tools or context.</p></article>
+          <div class="term-grid" aria-label="第一次词汇揭示">
+            <article class="term"><b>Host</b><p>用户正在使用的 AI 应用。</p></article>
+            <article class="term"><b>Client</b><p>藏在 Host 里的连接器。</p></article>
+            <article class="term"><b>Server</b><p>对外提供工具或上下文的程序。</p></article>
           </div>
         </section>
 
         <section class="section" aria-labelledby="interview-title">
-          <div class="section-label">Interview lens</div>
-          <h2 id="interview-title">The question is already showing up.</h2>
-          <p class="section-intro">These are not invented “top questions”. The first two are observed in public first-hand interview reports; the last is a useful inference from the architecture.</p>
+          <div class="section-label">面试视角</div>
+          <h2 id="interview-title">这个问题已经出现在面试里。</h2>
+          <p class="section-intro">下面不是模型凭空编的“高频题”。前两题来自公开的一手面经；最后一题是根据架构推导出的练习题。</p>
           <div class="evidence-grid">
             <article class="evidence-card observed">
-              <div class="source-kind">Observed · Amazon SDE Intern · 2026</div>
-              <h3>“What are MCP servers?”</h3>
-              <p>The report says the interviewer expected conceptual understanding plus practical applications.</p>
-              <p><a href="https://leetcode.com/discuss/post/8379852/amazon-sde-internship-interview-experien-xu0m/">Read the first-hand report →</a></p>
+              <div class="source-kind">真实面经 · Amazon SDE 实习 · 2026</div>
+              <h3>“什么是 MCP Server？”</h3>
+              <p>面经作者说，面试官期待的不只是概念，还要能说明实际应用。</p>
+              <p><a href="https://leetcode.com/discuss/post/8379852/amazon-sde-internship-interview-experien-xu0m/">查看一手面经 →</a></p>
             </article>
             <article class="evidence-card observed">
-              <div class="source-kind">Observed · JPMorgan AI Engineer · 2026</div>
-              <h3>Did you personally implement an MCP server?</h3>
-              <p>The discussion focused on ownership, service boundaries, and the architecture behind an agentic project.</p>
-              <p><a href="https://www.reddit.com/r/OfferEngineering/comments/1vgc8zk/jpmorgan_ai_engineer_phone_screen_interview/">Read the first-hand report →</a></p>
+              <div class="source-kind">真实面经 · JPMorgan AI Engineer · 2026</div>
+              <h3>你亲自实现过 MCP Server 吗？</h3>
+              <p>面试深入追问了候选人的个人负责范围、服务边界，以及 agent 项目的架构。</p>
+              <p><a href="https://www.reddit.com/r/OfferEngineering/comments/1vgc8zk/jpmorgan_ai_engineer_phone_screen_interview/">查看一手面经 →</a></p>
             </article>
             <article class="evidence-card derived">
-              <div class="source-kind">Likely · derived from the above</div>
-              <h3>Why use a protocol instead of one-off integrations?</h3>
-              <p>Inference: a strong answer should connect reuse, discoverability, permissions, and the cost of maintaining adapters.</p>
-              <p><strong>Not a reported question.</strong></p>
+              <div class="source-kind">推导题 · 根据上面内容</div>
+              <h3>为什么需要协议，而不是一堆一次性集成？</h3>
+              <p>推导：好的回答应该连起复用、能力发现、权限控制，以及维护适配器的成本。</p>
+              <p><strong>这不是面经原题。</strong></p>
             </article>
           </div>
         </section>
 
         <section class="answer" aria-labelledby="answer-title">
-          <div class="section-label">Say it out loud</div>
-          <h2 id="answer-title">A 30-second interview answer</h2>
-          <blockquote>MCP is an open protocol that gives AI applications a standard way to discover and use external tools and data. Instead of every host writing a separate integration for every service, an MCP client connects the host to an MCP server that exposes capabilities in a shared shape. That makes integrations reusable—but the server and its permissions still need to be trusted and reviewed.</blockquote>
+          <div class="section-label">试着说出来</div>
+          <h2 id="answer-title">30 秒面试回答</h2>
+          <blockquote>MCP 是一种开放协议，让 AI 应用可以用统一方式发现和使用外部工具与数据。以前每个 Host 都要为每个服务单独写集成；现在，MCP Client 把 Host 接到 MCP Server，Server 用共享的协议暴露能力。这样集成可以复用，但 Server 和它拥有的权限仍然需要被信任和审查。</blockquote>
         </section>
 
-        <div class="footer-note"><span>Side quests stay in Lecture 01.</span><span>Say “next lecture” to meet Host, Client, and Server in detail.</span></div>
+        <div class="footer-note"><span>插问仍然留在第 01 讲。</span><span>说“下一讲”，我们再详细认识 Host、Client 和 Server。</span></div>
 
         <section class="source-box" aria-labelledby="sources-title">
-          <h2 id="sources-title">Sources used in this lesson</h2>
+          <h2 id="sources-title">本讲使用的资料</h2>
           <ul>
-            <li><a href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro">MCP official introduction</a> — protocol purpose and terminology.</li>
-            <li><a href="https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/server/tools.mdx">MCP official Tools specification</a> — tool discovery, calling, and human-in-the-loop guidance.</li>
-            <li><a href="https://leetcode.com/discuss/post/8379852/amazon-sde-internship-interview-experien-xu0m/">Amazon SDE Internship interview experience (2026)</a> — observed MCP question.</li>
-            <li><a href="https://www.reddit.com/r/OfferEngineering/comments/1vgc8zk/jpmorgan_ai_engineer_phone_screen_interview/">JPMorgan AI Engineer phone screen experience (2026)</a> — observed implementation deep dive.</li>
+            <li><a href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro">MCP 官方介绍</a> — 协议目的与基本术语。</li>
+            <li><a href="https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/server/tools.mdx">MCP 官方 Tools 规范</a> — 工具发现、调用与人在回路中的安全提示。</li>
+            <li><a href="https://leetcode.com/discuss/post/8379852/amazon-sde-internship-interview-experien-xu0m/">Amazon SDE 实习面经（2026）</a> — 真实 MCP 面试问题。</li>
+            <li><a href="https://www.reddit.com/r/OfferEngineering/comments/1vgc8zk/jpmorgan_ai_engineer_phone_screen_interview/">JPMorgan AI Engineer 面经（2026）</a> — 真实的 MCP 实现追问。</li>
           </ul>
         </section>
       </main>
