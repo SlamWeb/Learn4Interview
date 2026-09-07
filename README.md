@@ -16,7 +16,7 @@ Turn any technical topic into a friendly, visual classroom that starts from zero
 </div>
 
 <p align="center">
-  💬 Topic&nbsp;&nbsp;→&nbsp;&nbsp;🧭 Roadmap&nbsp;&nbsp;→&nbsp;&nbsp;🧸 Intuition&nbsp;&nbsp;→&nbsp;&nbsp;🛠 Real system&nbsp;&nbsp;→&nbsp;&nbsp;🎯 Interview&nbsp;&nbsp;→&nbsp;&nbsp;🌐 HTML lesson
+  <img src="assets/hero.png" alt="A learning journey from a simple story through technical systems to interview confidence" width="100%">
 </p>
 
 ## 🌱 What is it?
